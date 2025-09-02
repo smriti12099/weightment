@@ -1,0 +1,141 @@
+<mvc:View controllerName="weighment.controller.Details" displayBlock="true"
+        xmlns:f="sap.ui.layout.form" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+        xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" >
+    <Page id="page" showNavButton="true" navButtonPress="handleBackNavigation">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm editable="true"
+                    layout="ColumnLayout"
+                    columnsM="3"
+                    columnsL="3"
+                    columnsXL="3">
+                    <!-- <f:toolbar>
+                        <Toolbar >
+                            <ToolbarSpacer ></ToolbarSpacer>
+                            <Button text="Edit" type="Emphasized" press="onPressEdit" enabled="{EditModel>/GeStatus}"></Button>
+                            <Button text="Clear" press="onPressClear" type="Emphasized" enabled="{EditModel>/GeStatus}"></Button>
+                        </Toolbar>
+                    </f:toolbar> -->
+                    <f:content>
+                        <Label text="{i18n>gateInNumber}" design="Bold" />
+                        <Input value="{DetailModel>/GateNumber}" editable="false" />
+                        <Label text="{i18n>gateInDate}" design="Bold" />
+                        <Input value="{path: 'DetailModel>/GateInDate', formatter: '.formatDate'}" editable="false" />
+                        <Label text="{i18n>gateInTime}" design="Bold" />
+                        <Input value="{DetailModel>/GateInTime}" editable="false" />
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm id="idHeaderDataForm"
+                    title="{i18n>headerData}"
+                    editable="false" 
+                    layout="ColumnLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="3" 
+                    labelSpanS="3" 
+                    adjustLabelSpan="false" 
+                    columnsXL="3" 
+                    columnsL="3" 
+                    columnsM="3" 
+                    singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="{i18n>orderNumber}" design="Bold"/>
+                        <Input id="idPurchasingDoc" value="{DetailModel>/PurchasingDoc}" editable="false" />
+                        <Label text="{i18n>orderNumber}" design="Bold"/>
+                        <Input id="idSalesOrd" value="{DetailModel>/SalesDocument}" editable="false" />
+                        <Label text="{i18n>vehicleNumber}" design="Bold"/>
+                        <Input value="{DetailModel>/VehichleNo}" editable="false" />
+                        <Label text="{i18n>plant}" design="Bold"/>
+                        <Input value="{DetailModel>/Plant}" editable="false" />
+                        <Label text="{i18n>lrrrNumber}" design="Bold"/>
+                        <Input value="{DetailModel>/LrRrNo}" editable="false" />
+                        <Label text="{i18n>vendorInvoiceNo}" design="Bold"/>
+                        <Input value="{DetailModel>/VendorInvoiceNo}" editable="false" />
+                        <Label text="{i18n>billOfLanding}" design="Bold"/>
+                        <Input value="{DetailModel>/BillOfLanding}" editable="false" />
+                        <Label text="{i18n>vendorInvoiceDate}" design="Bold"/>
+                        <Input value="{path : 'DetailModel>/VendorInvoiceDt', formatter: '.formatDate'}" editable="false" />
+                        <Label text="{i18n>weighBridgeNoGross}" design="Bold"/>
+                        <Input id="idWeighBridgeGross"  valueLiveUpdate="true" liveChange="onChangeWeighBridge" />
+                        <Label text="{i18n>weighBridgeNoTare}" design="Bold"/>
+                        <Input id="idWeighBridgeTare"  valueLiveUpdate="true" liveChange="onChangeWeighBridge"  />
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm id="idWeighmentDetailsForm"
+                    title="{i18n>weighmentDetails}"
+                    editable="false" 
+                    layout="ColumnLayout" 
+                    labelSpanXL="3" 
+                    labelSpanL="3" 
+                    labelSpanM="3" 
+                    labelSpanS="3" 
+                    adjustLabelSpan="false" 
+                    columnsXL="3" 
+                    columnsL="3" 
+                    columnsM="3" 
+                    singleContainerFullSize="false">
+                    <f:content>
+                        <Label text="{i18n>suppKantaSlipNo}" design="Bold"/>
+                        <Input value="{DetailModel>/VendorSlip}" editable="{EditModel>/GeStatus}"/>
+                        <Label text="{i18n>vendorKantaGrossWt}" design="Bold"/>
+                        <Input value="{DetailModel>/VendorGrossWeight}" change="addDecimalPoint" editable="{EditModel>/GeStatus}"/>
+                        <Label text="{i18n>vendorKantaTareWt}" design="Bold"/>
+                        <Input value="{DetailModel>/VendorTareWeight}" change="addDecimalPoint" editable="{EditModel>/GeStatus}"/>
+                        <Label ></Label>
+                        <Text ></Text>
+                        <Label text="{i18n>grossWt}" design="Bold"/>
+                        <Input id="idGrossWeight" value="{DetailModel>/GrossWeight}" change="onWeightChange" editable="false" />
+                        <Label text="{i18n>TareWt}" design="Bold"/>
+                        <Input id="idTareWeight" value="{DetailModel>/TareWeight}" change="onWeightChange" editable="false" />
+                        <Label text="{i18n>netWt}" design="Bold"/>
+                        <Input value="{DetailModel>/NetWeight}" editable="false" />
+                        <Label text="{i18n>initialWeighmentDate}" design="Bold"/>
+                        <Input value="{path :'DetailModel>/InitWtDate', formatter: '.formatDate'}" editable="false" />
+                        <Label text="{i18n>finalWeighmentDate}" design="Bold"/>
+                        <Input value="{path: 'DetailModel>/FinalWtDate', formatter: '.formatDate'}" editable="false" />
+                        <Label text="Initial Weighment Time" design="Bold"/>
+                        <Input value="{DetailModel>/InitWtTime}" editable="false"></Input>
+                        <Label text="Final Weighment Time" design="Bold"/>
+                        <Input value="{DetailModel>/FinalWtTime}" editable="false"></Input>
+                        <Label text="{i18n>packUnit}" design="Bold"/>
+                        <Input value="KG" editable="false"></Input>
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+
+        </content>
+        <footer>
+            <Bar>
+                <contentMiddle>
+                    <!-- <Button id="idCaptureBtn" text="{i18n>captureWeight}" type="Emphasized" press="onPressCaptureWeight" enabled="{EditModel>/GeStatus}" /> -->
+                    <!-- File Uploader Button -->
+                    <!-- <Button text="Upload Excel File" press="onUploadPress1" /> -->
+
+                    <u:FileUploader 
+                        id="fileUploader"
+                        change="onFileChange"
+                        buttonOnly="true"
+                        buttonText="Capture Weight"
+                        fileType="xlsx"
+                        uploadOnChange="false"
+                        icon="sap-icon://upload" 
+                        enabled="{EditModel>/GeStatus}"
+                        />
+
+                    <!-- Hidden File Uploader -->
+                    <!-- <u:FileUploader id="fileUploader" change="onFileChange" visible="false" /> -->
+                </contentMiddle>
+                <contentRight>
+                    <Button text="API Trigger" press="onPressAPI"></Button>
+                    <Button text="{i18n>save}" type="Emphasized" press="onPressSave" enabled="{EditModel>/GeStatus}" ></Button>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

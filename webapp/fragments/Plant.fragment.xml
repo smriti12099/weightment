@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <!-- <TableSelectDialog 
+		noDataText="No Plant Found"
+		title="Select Plant"
+		search=".handlePlantSearch"
+		confirm=".handlePlantClose"
+		cancel=".handlePlantClose" items="{/Plant}" contentWidth="50%" contentHeight="50%">
+        <ColumnListItem vAlign="Middle">
+			<cells>
+				<Text text="{Plant}" />
+                <Text text="{PlantName}"></Text>
+			</cells>
+		</ColumnListItem>
+        <columns>
+			<Column>
+				<header>
+					<Text text="Plant" />
+				</header>
+			</Column>
+            <Column >
+                <header>
+                    <Text text="Description"></Text>
+                </header>
+            </Column>
+        </columns>
+    </TableSelectDialog> -->
+	<Dialog title="Select Plant" contentWidth="50%" contentHeight="50%" >
+		<Table items="{/Plant}" noDataText="No Plant Found" growing="true" growingThreshold="100">
+			<columns>
+				<Column>
+					<header>
+						<Text text="Plant" />
+					</header>
+				</Column>
+				<Column >
+					<header>
+						<Text text="Description"></Text>
+					</header>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Active" press="onSelectPlant">
+					<cells>
+						<Text text="{Plant}" />
+						<Text text="{PlantName}"></Text>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button text="Close" press="handlePlantVHClose"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

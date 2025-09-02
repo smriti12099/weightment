@@ -1,0 +1,111 @@
+<mvc:View controllerName="weighment.controller.Weighment" displayBlock="true" xmlns:mvc="sap.ui.core.mvc" 
+        xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.f" xmlns:core="sap.ui.core" >
+    <f:DynamicPage id="dynamicPageId" preserveHeaderStateOnScroll="true" toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>title}"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <fb:FilterBar id="weighmentFilterBar" search="onSearch">
+                    <fb:filterGroupItems>
+                        <fb:FilterGroupItem name="Gate Number" label="{i18n>gateNumber}" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="idGateNumber" showValueHelp="true" valueHelpRequest="onGateNumberVH" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem name="Gate Type" label="{i18n>gateType}" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <ComboBox id="idGateType" items="{/zge_ce_typevh}">
+                                    <core:Item key="{gate_type}" text="{gate_type}"/>
+                                    <!-- <core:Item key="Purchase" text="{i18n>purchase}"/>
+                                    <core:Item key="Sales" text="{i18n>sales}"/>
+                                    <core:Item key="Gate Pass" text="{i18n>gatePass}"/> -->
+                                </ComboBox>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem name="Plant" label="{i18n>plant}" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="idPlant" showValueHelp="true" valueHelpRequest="onPlantVH" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        
+                        <fb:FilterGroupItem name="Purchase Order" label="{i18n>purchaseOrder}" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="idPurchaseOrder" showValueHelp="true" valueHelpRequest="onPurchasingDocVH" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem name="Sales Order" label="Sales Order" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="idSalesOrder" showValueHelp="true" valueHelpRequest="onSalesOrderVH" />
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem name="GE Status" label="{i18n>geStatus}" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <ComboBox id="idGEStatus" items="{/zge_ce_statusvh}">
+                                    <core:Item key="{status}" text="{status}" />
+                                </ComboBox>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                    </fb:filterGroupItems>
+                </fb:FilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table id="weighmentTable" items="{WeighmentModel>/results}" growing="true" sticky="HeaderToolbar,ColumnHeaders" 
+                mode="SingleSelectLeft" >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>weighment}" />
+                    <ToolbarSpacer/>
+                        <!-- <Button text="Cancel" type="Emphasized" press="onPressCancel"></Button> -->
+                        <Button text="{i18n>weighmentInitial}" type="Emphasized" press="onPressWeighmentInitial"/>
+                        <Button text="{i18n>weighmentFinal}" type="Emphasized" press="onPressWeighmentFinal"/>
+                        <Button text="{i18n>skipWeight}" type="Emphasized" press="onPressSkipWeight"/>
+                        
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="{i18n>gateNumber}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>gateDate}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>gateType}"/>
+                    </Column>
+                    <Column >
+                        <Text text="{i18n>plant}"/>
+                    </Column>
+                    
+                    <Column>
+                        <Text text="{i18n>purchaseOrder}"/>
+                    </Column>
+                    <Column>
+                        <Text text="Sales Order"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>geStatus}"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onPressNav">
+                        <cells>
+                            <Text text="{WeighmentModel>GateNumber}"/>
+                            <Text text="{path:'WeighmentModel>GateInDate', formatter: '.formatDate'}"/>
+                            <Text text="{WeighmentModel>GateType}"/>
+                            <Text text="{WeighmentModel>Plant}"/>
+                            <Text text="{WeighmentModel>PurchasingDoc}"/>
+                            <Text text="{WeighmentModel>SalesDocument}"/>
+                            <Text text="{WeighmentModel>GateStatus}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

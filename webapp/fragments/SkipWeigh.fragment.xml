@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+    xmlns:form="sap.ui.layout.form" xmlns="sap.m" >
+    <Dialog title="Skpi Weight" contentWidth="500px">
+        <content>
+            <form:SimpleForm editable="true"
+                layout="ResponsiveGridLayout"
+                columnsM="1"
+                columnsL="1"
+                columnsXL="1" >
+                <form:content>
+                    <Label text="Skip Remarks" design="Bold" required="true" />
+                    <TextArea id="idSkipRemark"  />
+                </form:content>
+            </form:SimpleForm>
+        </content>
+        <Toolbar>
+            <ToolbarSpacer/>
+            <Button type="Emphasized" text="Skip Weighment" press="onConfirmSkip" />
+            <Button text="{i18n>close}" press="onCloseSkip" />
+        </Toolbar>
+    </Dialog>
+</core:FragmentDefinition>
